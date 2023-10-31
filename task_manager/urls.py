@@ -16,8 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from . import views
-from .views import TaskListAPIView, TaskDetailAPIView
+from tasks.view import views
+from tasks.view.api_views import TaskListAPIView, TaskDetailAPIView
 
 urlpatterns = [
     path("tasks/", views.TaskListView.as_view(), name="task_list"),
