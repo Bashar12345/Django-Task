@@ -33,10 +33,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-t)!7h3gyxd44h2_&d%c020^84gvpdrb%ailt&3t@wrur9dif96"
+# SECRET_KEY = "django-insecure-t)!7h3gyxd44h2_&d%c020^84gvpdrb%ailt&3t@wrur9dif96"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+
+
+# DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -88,12 +90,12 @@ WSGI_APPLICATION = "task_manager.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
 
 
 # Password validation
