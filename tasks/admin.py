@@ -1,13 +1,13 @@
 from django.contrib import admin
 
 # Register your models here.
-from django.contrib import admin
-from .models import Task
-from .models import Photo
+
+from .model.task_models import Task
+from .model.photo_models import Photo
 
 
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ("title", "description", "priority", "created_at", "updated_at")
+    list_display = ("title", "description", "priority", "creation_date", "last_update")
     list_filter = ("priority",)
     search_fields = ("title", "description")
     ordering = ("-priority",)

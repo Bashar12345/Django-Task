@@ -1,26 +1,40 @@
 from django.shortcuts import render
-from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
+from django.views.generic import (
+    CreateView,
+    ListView,
+    DetailView,
+    UpdateView,
+    DeleteView,
+)
 
-from .models import Task
-from .forms import TaskForm
+from tasks.model.task_models import Task
+from tasks.forms import *
 
 # Create your views here.
 
 
-
-
-#  TaskListView:
+# TaskListView:
 class TaskListView(ListView):
     model = Task
-    template_name = "tasks/list.html"
+    template_name = 'tasks/list.html'
+    context_object_name = 'tasks'
+
+    def get_queryset(self):
+        return Task.objects.filter(owner_id=self.request.user)
 
 
 # b. TaskCreateView:
 class TaskCreateView(CreateView):
     model = Task
-    form_class = TaskForm
+    form_class = TaskCreateForm
     template_name = "tasks/create.html"
-    success_url = "/tasks/"
+    success_url = reverse_lazy("tasks:task_list")
+
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super().form_valid(form)
 
 
 # c. TaskDetailView:
@@ -32,7 +46,7 @@ class TaskDetailView(DetailView):
 # d. TaskUpdateView:
 class TaskUpdateView(UpdateView):
     model = Task
-    form_class = TaskForm
+    form_class = TaskUpdateForm
     template_name = "tasks/update.html"
     success_url = "/tasks/"
 
